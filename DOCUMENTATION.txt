@@ -1,0 +1,200 @@
+
+===============================================================================
+
+     "WELCOME TO THE UNDERGROUND"
+
+        ______     ______     ______      __    __     ______     __   __   __
+       /\  ___\   /\  ___\   /\__  _\    /\ "-./  \   /\  __ \   /\ \ / /  /\ \
+       \ \ \__ \  \ \  __\   \/_/\ \/    \ \ \-./\ \  \ \ \/\ \  \ \ \'/   \ \ \
+        \ \_____\  \ \_____\    \ \_\     \ \_\ \ \_\  \ \_____\  \ \__|    \ \_\
+         \/_____/   \/_____/     \/_/      \/_/  \/_/   \/_____/   \/_/      \/_/
+
+                         VERSION 2.1 - RETRO EDITION
+
+===============================================================================
+
+
++-----------------------------------------------------------------------------+
+|                         WHY DOES THIS EXIST?                                |
++-----------------------------------------------------------------------------+
+
+  Have you ever tried to search for a movie on The Pirate Bay?
+
+  It's a nightmare. You just want to find a movie, but instead you're
+  playing whack-a-mole with popup windows, fake download buttons, and
+  sketchy redirects. Every click spawns three more tabs you didn't ask for.
+
+  THIS SCRIPT SOLVES THAT PROBLEM.
+
+  No browser. No popups. No ads. No malware.
+  Just a clean terminal interface that fetches what you need.
+
+
++-----------------------------------------------------------------------------+
+|                    ...BUT WHY THE 1980s AESTHETIC?                          |
++-----------------------------------------------------------------------------+
+
+  Because if we're going back to the golden age of piracy, we might as
+  well go ALL THE WAY BACK.
+
+  Remember when computers were EXCITING? When booting up meant:
+
+      C:\> AUTOEXEC.BAT
+      C:\> Loading HIMEM.SYS...
+      C:\> Loading EMM386.EXE...
+      C:\> MOUSE.COM installed
+      C:\> CD GAMES
+      C:\> DOOM.EXE
+
+  Remember CONFIG.SYS? Spending hours trying to free up conventional
+  memory just to run a game? "640K ought to be enough for anybody"?
+
+  Remember the SOUND of a 2400 baud modem connecting?
+
+      ATDT 555-1234
+      ~~~~~ EEEE-AWWWW-KKKKRRRRSSSHHHHH ~~~~~
+      CONNECT 2400
+      NO CARRIER
+      **** REDIAL ****
+
+  Remember dialing into BBS systems at 2AM, hoping your parents
+  wouldn't pick up the phone and kill your download?
+
+  Remember when ANSI art was the height of graphics technology?
+
+  THIS SCRIPT IS A LOVE LETTER TO THAT ERA.
+
+
++-----------------------------------------------------------------------------+
+|                           THE EXPERIENCE                                    |
++-----------------------------------------------------------------------------+
+
+  When you launch GetMovies, you're not just searching for torrents.
+  You're stepping into a time machine.
+
+    ___________________________________________________________
+   |                                                           |
+   |  > CONNECTING TO PIRATE DATABASE...                       |
+   |  > BYPASSING SECURITY PROTOCOLS...                        |
+   |  > ACCESSING TORRENT MAINFRAME...                         |
+   |  > DECRYPTING MAGNET LINKS...                             |
+   |  > SCANNING FOR SEEDERS...                                |
+   |  > INITIALIZING P2P CONNECTIONS...                        |
+   |                                                           |
+   |  [##########..........] 50% - PLEASE WAIT                 |
+   |___________________________________________________________|
+
+  Fake loading screens. Dramatic pauses. A "System Status Monitor"
+  showing your Intel 80486 running at 66MHz with 640KB of RAM.
+
+  Is it necessary? No.
+  Is it fun? ABSOLUTELY.
+
+
++-----------------------------------------------------------------------------+
+|                        20 SPLASH SCREENS                                    |
++-----------------------------------------------------------------------------+
+
+  Choose your nostalgia:
+
+     [1]  BBS Terminal      - Classic bulletin board vibes
+     [2]  BBC Micro         - British computing heritage
+     [3]  C64 BASIC         - LOAD "*",8,1
+     [4]  War Games         - "Shall we play a game?"
+     [5]  Amiga Workbench   - Guru Meditation errors
+     [6]  Norton Commander  - Blue panels forever
+     [7]  Arcade Cabinet    - INSERT COIN
+     [8]  Apple II          - ][e memories
+     [9]  ZX Spectrum       - Loading stripes
+     [10] Atari 800         - 8-bit glory
+     [11] TRS-80            - Trash-80 pride
+     [12] MSX Computer      - Japanese computing
+     [13] VIC-20            - The friendly computer
+     [14] Tandy CoCo        - Color Computer gang
+     [15] SEGA Genesis      - SEGA!
+     [16] Matrix Rain       - Follow the white rabbit
+     [17] OS/2 Warp         - IBM's forgotten child
+     [18] BeOS              - What could have been
+     [19] NeXTSTEP          - Steve's other company
+     [20] Sun Solaris       - Enterprise Unix
+
+
++-----------------------------------------------------------------------------+
+|                          MAIN FEATURES                                      |
++-----------------------------------------------------------------------------+
+
+       SEARCH                    Browse The Pirate Bay without the cancer
+          |                      of popup ads and fake download buttons
+          v
+    +-----------+
+    | RESULTS   |--------------> Magnet links, seeders, leechers, size
+    +-----------+                Clean. Simple. No bullshit.
+          |
+          v
+    +-----------+
+    | DOWNLOAD  |--------------> Click a number, magnet link launches
+    +-----------+                Your torrent client does the rest
+
+
+    RECENT SEARCHES              Your last 10 searches, saved locally
+                                 One keypress to re-run any of them
+
+
+    TOP DOWNLOADS                See what's trending on TPB
+
+
+    PERSONALIZATION              Set your username for the welcome screen
+                                 Pick your favorite splash screen
+
+
++-----------------------------------------------------------------------------+
+|                         QUICK MODE                                          |
++-----------------------------------------------------------------------------+
+
+  The retro loading animations are fun... the first time.
+
+  If you've searched within the last 60 minutes, the script
+  automatically enables QUICK MODE - 10x faster animations
+  so you can get to your results without the theatrics.
+
+                    FIRST SEARCH            REPEAT SEARCH
+                    ~~~~~~~~~~~~            ~~~~~~~~~~~~~
+                    Full animations   --->  Speed mode
+                    500ms delays      --->  50ms delays
+                    Maximum vibes     --->  Maximum efficiency
+
+
++-----------------------------------------------------------------------------+
+|                             FILES                                           |
++-----------------------------------------------------------------------------+
+
+    GetMoviesV2_Retro.ps1    The main script
+    GetMovies.bat            Windows launcher (double-click to run)
+    getmovies_config.txt     Your settings (username, splash preference)
+    recent_searches.txt      Your search history
+
+
++-----------------------------------------------------------------------------+
+|                          SYSTEM REQUIREMENTS                                |
++-----------------------------------------------------------------------------+
+
+    REQUIRED:   Intel 80486 DX2 66MHz or better
+                640KB RAM (512KB free conventional memory)
+                VGA display (256 colors recommended)
+                56K modem (28.8K minimum, 14.4K if desperate)
+                MS-DOS 6.22 with Windows 3.11 for Workgroups
+
+    RECOMMENDED: A parent who doesn't pick up the phone during downloads
+
+
+    (Just kidding. You need PowerShell 5.1+ and an internet connection.)
+
+
+===============================================================================
+          THE PIRATE BAY WITHOUT THE PAIN. THE 1980s WITHOUT THE WAIT.
+
+   This is for fun - we hope you like it! Let me know if you want other
+   features added.
+
+                        "THE UNDERGROUND NEVER FORGETS"
+===============================================================================

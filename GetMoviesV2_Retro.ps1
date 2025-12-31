@@ -1,19 +1,23 @@
-﻿# GetMovies V2 - 1980s Retro Style
+﻿# GetMovies V2.1 - 1980s Retro Style
 
 # Global configuration
+$Script:ApplicationVersion = "2.1"
 $Script:ConfigFile = "$PSScriptRoot\getmovies_config.txt"
 $Script:UserName = "User"
 $Script:SplashScreen = "1"  # Default splash screen
 
+
 # Load user configuration
 function Load-UserConfig {
     if (Test-Path $Script:ConfigFile) {
-        $config = @(Get-Content $Script:ConfigFile)
-        if ($config.Count -ge 1 -and $config[0]) {
-            $Script:UserName = [string]$config[0]
-        }
-        if ($config.Count -ge 2 -and $config[1]) {
-            $Script:SplashScreen = [string]$config[1]
+        $configLines = Get-Content $Script:ConfigFile
+        foreach ($line in $configLines) {
+            if ($line -match "^username:(.+)$") {
+                $Script:UserName = $matches[1].Trim()
+            }
+            elseif ($line -match "^splashscreen:(.+)$") {
+                $Script:SplashScreen = $matches[1].Trim()
+            }
         }
     } else {
         # First time setup
@@ -30,14 +34,14 @@ function Load-UserConfig {
         Write-Host ""
         Write-Host "    ENTER YOUR NAME FOR PERSONALIZATION: " -NoNewline -ForegroundColor Cyan
         $newName = Read-Host
-        
+
         if ([string]::IsNullOrWhiteSpace($newName)) {
             $newName = "User"
         }
-        
+
         $Script:UserName = $newName
-        @($newName, $Script:SplashScreen) | Set-Content $Script:ConfigFile
-        
+        @("username:$newName", "splashscreen:$($Script:SplashScreen)") | Set-Content $Script:ConfigFile
+
         Write-Host ""
         Write-Host "    PROFILE CREATED FOR: $(([string]$Script:UserName).ToUpper())" -ForegroundColor Green
         Write-Host "    WELCOME TO THE UNDERGROUND!" -ForegroundColor Yellow
@@ -156,30 +160,10 @@ function Show-Splash2 {
     Write-Host ""
     Write-Host "    BASIC" -ForegroundColor Green
     Write-Host ""
-    Write-Host "    >10 REM *** GETMOVIES V2.0 - BBC MICRO EDITION ***" -ForegroundColor White
-    Write-Host "    >20 REM *** TORRENT ACQUISITION SYSTEM ***" -ForegroundColor White
-    Write-Host "    >30 PRINT" -ForegroundColor White
-    Write-Host "    >40 PRINT`"  +================================+`"" -ForegroundColor White
-    Write-Host "    >50 PRINT`"  |                                |`"" -ForegroundColor White
-    Write-Host "    >60 PRINT`"  |        GETMOVIES V2.0          |`"" -ForegroundColor White
-    Write-Host "    >70 PRINT`"  |     BBC MICRO EDITION          |`"" -ForegroundColor White
-    Write-Host "    >80 PRINT`"  |                                |`"" -ForegroundColor White
-    Write-Host "    >90 PRINT`"  |   TELETEXT TORRENT TERMINAL    |`"" -ForegroundColor White
-    Write-Host "    >100 PRINT`" |                                |`"" -ForegroundColor White
-    Write-Host "    >110 PRINT`" +================================+`"" -ForegroundColor White
-    Write-Host "    >120 PRINT" -ForegroundColor White
-    Write-Host "    >130 PRINT`"BBC MICRO MODEL B - 32K RAM`"" -ForegroundColor White
-    Write-Host "    >140 PRINT`"6502 PROCESSOR AT 2MHZ`"" -ForegroundColor White
-    Write-Host "    >150 PRINT`"ACORN DFS - DUAL FLOPPY SYSTEM`"" -ForegroundColor White
-    Write-Host "    >160 PRINT" -ForegroundColor White
-    Write-Host "    >170 PRINT`"*EXEC DOWNLOAD FILMS MODE 7`"" -ForegroundColor White
-    Write-Host "    >180 PRINT`"READY`"" -ForegroundColor White
-    Write-Host "    >190 END" -ForegroundColor White
-    Write-Host "    >RUN" -ForegroundColor Green
     Write-Host ""
     Write-Host "      +================================+" -ForegroundColor Yellow
     Write-Host "      |                                |" -ForegroundColor Yellow
-    Write-Host "      |        GETMOVIES V2.0          |" -ForegroundColor Red
+    Write-Host "      |        Get Movies $Script:ApplicationVersion          |" -ForegroundColor Red
     Write-Host "      |     BBC MICRO EDITION          |" -ForegroundColor Red
     Write-Host "      |                                |" -ForegroundColor Yellow
     Write-Host "      |   TELETEXT TORRENT TERMINAL    |" -ForegroundColor Cyan
@@ -268,7 +252,7 @@ function Show-Splash4 {
     Write-Host ""
     Write-Host "    ACCESS GRANTED - WELCOME PROFESSOR FALKEN" -ForegroundColor Green
     Write-Host ""
-    Write-Host "    LOADING OPERATION: GETMOVIES v2.0" -ForegroundColor Yellow
+    Write-Host "    LOADING OPERATION: Get Movies $Script:ApplicationVersion" -ForegroundColor Yellow
     Write-Host ""
     Write-Host "    +-------------------------------------------------------------------------+" -ForegroundColor DarkGreen
     Write-Host "    | TACTICAL OPERATIONS READOUT REGARDING ENEMY TRANSMISSIONS               |" -ForegroundColor Green
@@ -309,7 +293,7 @@ function Show-Splash5 {
     Write-Host "     |    [#]    |  |    [o]    |  |    [@]    |  |    [!]    |" -ForegroundColor White
     Write-Host "     +-----------+  +-----------+  +-----------+  +-----------+" -ForegroundColor Cyan
     Write-Host ""
-    Write-Host "                        >>> GETMOVIES V2.0 <<<" -ForegroundColor Yellow
+    Write-Host "                        >>> Get Movies $Script:ApplicationVersion <<<" -ForegroundColor Yellow
     Write-Host "                    The Ultimate Torrent Finder" -ForegroundColor White
     Write-Host ""
     Write-Host "    +---------------------------------------------------------------+" -ForegroundColor DarkGray
@@ -339,7 +323,7 @@ function Show-Splash6 {
     Write-Host "|                  |         |          |       ||                  |         |" -ForegroundColor White -BackgroundColor DarkBlue
     Write-Host "+----------------------------------+--+----------------------------------+--+" -ForegroundColor Cyan -BackgroundColor DarkBlue
     Write-Host ""
-    Write-Host "                         GETMOVIES V2.0 COMMANDER" -ForegroundColor Yellow
+    Write-Host "                         Get Movies $Script:ApplicationVersion COMMANDER" -ForegroundColor Yellow
     Write-Host "                    Your File Manager for Movie Torrents" -ForegroundColor Green
     Write-Host ""
     Write-Host "    +================================================================+" -ForegroundColor DarkGray
@@ -413,7 +397,7 @@ function Show-Splash8 {
     Start-Sleep -Milliseconds 800
     Write-Host "********************************" -ForegroundColor Green
     Write-Host "*                              *" -ForegroundColor Green
-    Write-Host "*     GETMOVIES V2.0           *" -ForegroundColor Green
+    Write-Host "*     Get Movies $Script:ApplicationVersion           *" -ForegroundColor Green
     Write-Host "*                              *" -ForegroundColor Green
     Write-Host "*  THE APPLE ][ TORRENT FINDER *" -ForegroundColor Green
     Write-Host "*                              *" -ForegroundColor Green
@@ -442,7 +426,7 @@ function Show-Splash9 {
     Write-Host "                    (C) 1982 Sinclair Research Ltd" -ForegroundColor White
     Write-Host ""
     Write-Host "    10 PRINT " -NoNewline -ForegroundColor Yellow
-    Write-Host "GETMOVIES V2.0 ZX SPECTRUM 48K" -NoNewline -ForegroundColor Cyan
+    Write-Host "Get Movies $Script:ApplicationVersion ZX SPECTRUM 48K" -NoNewline -ForegroundColor Cyan
     Write-Host '"' -ForegroundColor Yellow
     Write-Host "    20 PRINT " -NoNewline -ForegroundColor Yellow
     Write-Host "================================" -NoNewline -ForegroundColor Magenta
@@ -501,7 +485,7 @@ function Show-Splash10 {
     Write-Host "                                            " -NoNewline
     Write-Host "|" -ForegroundColor DarkBlue
     Write-Host "    |" -NoNewline -ForegroundColor DarkBlue
-    Write-Host "           GETMOVIES V2.0                   " -NoNewline -ForegroundColor Cyan
+    Write-Host "           Get Movies $Script:ApplicationVersion                   " -NoNewline -ForegroundColor Cyan
     Write-Host "|" -ForegroundColor DarkBlue
     Write-Host "    |" -NoNewline -ForegroundColor DarkBlue
     Write-Host "        THE 8-BIT TORRENT HERO              " -NoNewline -ForegroundColor White
@@ -543,7 +527,7 @@ function Show-Splash11 {
     Start-Sleep -Milliseconds 500
     Write-Host "GETMOVIES/CMD" -ForegroundColor Green
     Write-Host ""
-    Write-Host "GETMOVIES V2.0 - LEVEL II BASIC" -ForegroundColor Green
+    Write-Host "Get Movies $Script:ApplicationVersion - LEVEL II BASIC" -ForegroundColor Green
     Write-Host "================================" -ForegroundColor Green
     Write-Host ""
     Write-Host "    ###  ### ###   ##   ###  ###" -ForegroundColor Green
@@ -588,7 +572,7 @@ function Show-Splash12 {
     Write-Host ""
     Write-Host "         /-----------------------\" -ForegroundColor Red
     Write-Host "         |  " -NoNewline -ForegroundColor Red
-    Write-Host "MSX GETMOVIES V2.0" -NoNewline -ForegroundColor Yellow
+    Write-Host "MSX Get Movies $Script:ApplicationVersion" -NoNewline -ForegroundColor Yellow
     Write-Host "  |" -ForegroundColor Red
     Write-Host "         |-----------------------|" -ForegroundColor Red
     Write-Host "         |  " -NoNewline -ForegroundColor Red
@@ -676,7 +660,7 @@ function Show-Splash14 {
     Write-Host "     #" -ForegroundColor Green
     Write-Host "         " -NoNewline
     Write-Host "#  " -NoNewline -ForegroundColor Green
-    Write-Host "    GETMOVIES V2.0" -NoNewline -ForegroundColor White
+    Write-Host "    Get Movies $Script:ApplicationVersion" -NoNewline -ForegroundColor White
     Write-Host "        #" -ForegroundColor Green
     Write-Host "         " -NoNewline
     Write-Host "#                              #" -ForegroundColor Green
@@ -732,7 +716,7 @@ function Show-Splash15 {
     Write-Host ""
     Write-Host "    +=======================================================+" -ForegroundColor Blue
     Write-Host "    |        " -NoNewline -ForegroundColor Blue
-    Write-Host "GETMOVIES V2.0 - 16-BIT BLAST PROCESSING" -NoNewline -ForegroundColor Yellow
+    Write-Host "Get Movies $Script:ApplicationVersion - 16-BIT BLAST PROCESSING" -NoNewline -ForegroundColor Yellow
     Write-Host "       |" -ForegroundColor Blue
     Write-Host "    +=======================================================+" -ForegroundColor Blue
     Write-Host ""
@@ -760,7 +744,7 @@ function Show-Splash16 {
     Write-Host "    |   |  |  |   __| | |    | | | |  |  |  |  |-   -|   __|__   |            |" -ForegroundColor Yellow
     Write-Host "    |   |_____|_____| |_|    |_|_|_|_____|\\___/|_____|_____|_____|            |" -ForegroundColor Yellow
     Write-Host "    |                                                                           |" -ForegroundColor Green
-    Write-Host "    |                    [ TORRENT ACQUISITION SYSTEM v2.0 ]                    |" -ForegroundColor White
+    Write-Host "    |                    [ TORRENT ACQUISITION SYSTEM Version $Script:ApplicationVersion ]                    |" -ForegroundColor White
     Write-Host "    |                                                                           |" -ForegroundColor Green
     Write-Host "    \---------------------------------------------------------------------------/" -ForegroundColor Green
     Write-Host ""
@@ -863,7 +847,7 @@ function Show-Splash18 {
     Write-Host "            |" -ForegroundColor Yellow
     Write-Host "    |                                                |" -ForegroundColor Yellow
     Write-Host "    |         " -NoNewline -ForegroundColor Yellow
-    Write-Host "GetMovies V2.0 for BeOS" -NoNewline -ForegroundColor Green
+    Write-Host "Get Movies $Script:ApplicationVersion for BeOS" -NoNewline -ForegroundColor Green
     Write-Host "              |" -ForegroundColor Yellow
     Write-Host "    |      " -NoNewline -ForegroundColor Yellow
     Write-Host "The multimedia torrent finder" -NoNewline -ForegroundColor White
@@ -906,7 +890,7 @@ function Show-Splash19 {
     Write-Host "    +--------------------------------------------------+" -ForegroundColor DarkGray
     Write-Host "    |                                                  |" -ForegroundColor Black -BackgroundColor Gray
     Write-Host "    |         " -NoNewline -ForegroundColor Black -BackgroundColor Gray
-    Write-Host "Welcome to GetMovies V2.0" -NoNewline -ForegroundColor Black -BackgroundColor White
+    Write-Host "Welcome to Get Movies $Script:ApplicationVersion" -NoNewline -ForegroundColor Black -BackgroundColor White
     Write-Host "               |" -ForegroundColor Black -BackgroundColor Gray
     Write-Host "    |                                                  |" -ForegroundColor Black -BackgroundColor Gray
     Write-Host "    |    " -NoNewline -ForegroundColor Black -BackgroundColor Gray
@@ -944,7 +928,7 @@ function Show-Splash20 {
     Write-Host ""
     Write-Host "    +=================================================+" -ForegroundColor Magenta
     Write-Host "    |         " -NoNewline -ForegroundColor Magenta
-    Write-Host "SPARC Powered GetMovies V2.0" -NoNewline -ForegroundColor Cyan
+    Write-Host "SPARC Powered Get Movies $Script:ApplicationVersion" -NoNewline -ForegroundColor Cyan
     Write-Host "          |" -ForegroundColor Magenta
     Write-Host "    |      " -NoNewline -ForegroundColor Magenta
     Write-Host "Running on UltraSPARC-IIIi @ 1.6GHz" -NoNewline -ForegroundColor White
@@ -1502,13 +1486,14 @@ function Perform-Search {
     param(
         [string]$searchTerm,
         [int]$resultCount = 10,
-        [bool]$skipAnimation = $false
+        [bool]$skipAnimation = $false,
+        [bool]$useQuickMode = $false
     )
     
     # Show search header
     Write-Host ""
     Write-Host "    +======================================================================+" -ForegroundColor Cyan
-    Write-Host "    |                    MOVIE SEARCH DATABASE v2.0                        |" -ForegroundColor Yellow
+    Write-Host "    |                    MOVIE SEARCH DATABASE Version $Script:ApplicationVersion                        |" -ForegroundColor Yellow
     Write-Host "    +======================================================================+" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "    SEARCHING FOR: $($searchTerm.ToUpper())" -ForegroundColor Green
@@ -1522,7 +1507,17 @@ function Perform-Search {
     
     if (-not $skipAnimation) {
         Write-Host ""
-        Write-Host "    INITIALIZING SEARCH MATRIX..." -ForegroundColor Yellow
+        
+        # Set delays based on quick mode
+        if ($useQuickMode) {
+            $stepDelay = 50      # 10x faster (was 500ms)
+            $bufferDelay = 5     # 10x faster (was 50ms)
+            Write-Host "    INITIALIZING SEARCH MATRIX [QUICK MODE]..." -ForegroundColor Green
+        } else {
+            $stepDelay = 500     # Original delay
+            $bufferDelay = 50    # Original delay
+            Write-Host "    INITIALIZING SEARCH MATRIX..." -ForegroundColor Yellow
+        }
         
         # Fake loading animation
         $loadingSteps = @(
@@ -1554,14 +1549,14 @@ function Perform-Search {
             Write-Host ("-" * (20 - ($percentComplete / 5))) -NoNewline
             Write-Host "] $percentComplete%"
 
-            Start-Sleep -Milliseconds 500
+            Start-Sleep -Milliseconds $stepDelay
         }
         
         Write-Host ""
         Write-Host "[Yea-Buffering" -NoNewline -ForegroundColor Green
         for ($i = 0; $i -lt 36; $i++) {
             Write-Host "=" -NoNewline -ForegroundColor Green
-            Start-Sleep -Milliseconds 50
+            Start-Sleep -Milliseconds $bufferDelay
         }
         Write-Host "] 100% COMPLETE" -ForegroundColor Green
     }
@@ -1830,7 +1825,7 @@ function Show-Menu {
     Write-Host "    |                                                                      |" -ForegroundColor Magenta
     Write-Host "    |                    ###############################                   |" -ForegroundColor DarkGray
     Write-Host "    |                    #  RADICAL TORRENT FINDER    #                    |" -ForegroundColor White
-    Write-Host "    |                    #       VERSION 2.0          #                    |" -ForegroundColor White
+    Write-Host "    |                    #      Version $Script:ApplicationVersion          #                    |" -ForegroundColor White
     Write-Host "    |                    ###############################                   |" -ForegroundColor DarkGray
     Write-Host "    |                                                                      |" -ForegroundColor Magenta
     Write-Host "    +======================================================================+" -ForegroundColor Magenta
@@ -1849,10 +1844,11 @@ function Show-Menu {
     Write-Host ""
     Write-Host "    ********************************************************************" -ForegroundColor DarkMagenta
     Write-Host "    *                                                                  *" -ForegroundColor DarkMagenta
-    Write-Host "    *  [1] SEARCH MOVIES & TV SHOWS      [4] SETTINGS                  *" -ForegroundColor White
-    Write-Host "    *  [2] RECENT SEARCHES               [5] CHANGE USER NAME          *" -ForegroundColor White
-    Write-Host "    *  [3] TOP DOWNLOADS                 [6] SPLASH SCREENS            *" -ForegroundColor White
-    Write-Host "    *  [7] HISTORY                       [X] EXIT TO DOS               *" -ForegroundColor White
+    Write-Host "    *  [1] SEARCH MOVIES & TV SHOWS      [6] SPLASH SCREENS            *" -ForegroundColor White
+    Write-Host "    *  [2] RECENT SEARCHES               [7] HISTORY                   *" -ForegroundColor White
+    Write-Host "    *  [3] TOP DOWNLOADS                 [8] DOCS (RETRO)              *" -ForegroundColor White
+    Write-Host "    *  [4] SETTINGS                      [9] DOCS (MODERN)             *" -ForegroundColor White
+    Write-Host "    *  [5] CHANGE USER NAME              [X] EXIT TO DOS               *" -ForegroundColor White
     Write-Host "    *                                                                  *" -ForegroundColor DarkMagenta
     Write-Host "    ********************************************************************" -ForegroundColor DarkMagenta
     Write-Host ""
@@ -1892,7 +1888,7 @@ do {
         Clear-Host
         Write-Host ""
         Write-Host "    +======================================================================+" -ForegroundColor Cyan
-        Write-Host "    |                    MOVIE SEARCH DATABASE v2.0                        |" -ForegroundColor Yellow
+        Write-Host "    |                    MOVIE SEARCH DATABASE Version $Script:ApplicationVersion                        |" -ForegroundColor Yellow
         Write-Host "    +======================================================================+" -ForegroundColor Cyan
         Write-Host ""
         Write-Host "    ENTER MOVIE/TV SHOW NAME: " -NoNewline -ForegroundColor Green
@@ -1905,8 +1901,18 @@ do {
             continue
         }
         
-        # Save to recent searches
+        # Check if we've searched recently BEFORE saving new search
         $recentFile = "$PSScriptRoot\recent_searches.txt"
+        $useQuickMode = $false
+        if (Test-Path $recentFile) {
+            $lastModified = (Get-Item $recentFile).LastWriteTime
+            $timeDiff = (Get-Date) - $lastModified
+            if ($timeDiff.TotalMinutes -le 60) {
+                $useQuickMode = $true
+            }
+        }
+        
+        # Save to recent searches
         # Add new search at the beginning and keep only unique entries
         $existingSearches = @()
         if (Test-Path $recentFile) {
@@ -1916,13 +1922,13 @@ do {
         $newSearches | Set-Content $recentFile
         
         # Call the search function
-        Perform-Search -searchTerm $searchTerm
+        Perform-Search -searchTerm $searchTerm -useQuickMode $useQuickMode
     }
     elseif ($choice -eq "2") {
         Clear-Host
         Write-Host ""
         Write-Host "    +======================================================================+" -ForegroundColor Cyan
-        Write-Host "    |                    RECENT SEARCH HISTORY v1.0                        |" -ForegroundColor Yellow
+        Write-Host "    |                    RECENT SEARCH HISTORY Version $Script:ApplicationVersion                        |" -ForegroundColor Yellow
         Write-Host "    +======================================================================+" -ForegroundColor Cyan
         Write-Host ""
         
@@ -1966,12 +1972,27 @@ do {
                     $searchTerm = $recentSearches[[int]$recentChoice - 1]
                     Write-Host "    RE-SEARCHING FOR: $searchTerm" -ForegroundColor Green
                     Start-Sleep -Seconds 1
+
+                    # Check if we've searched recently for quick mode BEFORE updating file
+                    $useQuickMode = $false
+                    if (Test-Path $recentFile) {
+                        $lastModified = (Get-Item $recentFile).LastWriteTime
+                        $timeDiff = (Get-Date) - $lastModified
+                        if ($timeDiff.TotalMinutes -le 60) {
+                            $useQuickMode = $true
+                        }
+                    }
+
+                    # Update recent searches - move selected search to top and remove duplicates
+                    $existingSearches = Get-Content $recentFile
+                    $newSearches = @($searchTerm) + ($existingSearches | Where-Object { $_ -ne $searchTerm }) | Select-Object -First 10
+                    $newSearches | Set-Content $recentFile
                     
                     # Clear screen before searching
                     Clear-Host
                     
                     # Call the search function directly
-                    Perform-Search -searchTerm $searchTerm -resultCount 10
+                    Perform-Search -searchTerm $searchTerm -resultCount 10 -useQuickMode $useQuickMode
                     
                     # Skip the "Press any key" prompt since we're done
                     continue
@@ -1995,7 +2016,7 @@ do {
         Clear-Host
         Write-Host ""
         Write-Host "    +======================================================================+" -ForegroundColor Blue
-        Write-Host "    |                    SYSTEM CONFIGURATION v1.0                         |" -ForegroundColor Yellow
+        Write-Host "    |                    SYSTEM CONFIGURATION Version $Script:ApplicationVersion                         |" -ForegroundColor Yellow
         Write-Host "    +======================================================================+" -ForegroundColor Blue
         Write-Host ""
         Write-Host "    LOADING CONFIG.SYS..." -ForegroundColor Green
@@ -2252,7 +2273,7 @@ do {
         }
         elseif ($settingChoice -eq "S" -or $settingChoice -eq "s") {
             # Save configuration
-            @($Script:UserName, $Script:SplashScreen) | Set-Content $Script:ConfigFile
+            @("username:$($Script:UserName)", "splashscreen:$($Script:SplashScreen)") | Set-Content $Script:ConfigFile
             
             Write-Host ""
             Write-Host "    UPDATING THE MAINFRAME..." -ForegroundColor Green
@@ -2288,7 +2309,7 @@ do {
         
         if (![string]::IsNullOrWhiteSpace($newName)) {
             $Script:UserName = $newName
-            @($newName, $Script:SplashScreen) | Set-Content $Script:ConfigFile
+            @("username:$newName", "splashscreen:$($Script:SplashScreen)") | Set-Content $Script:ConfigFile
             
             Write-Host ""
             Write-Host "    UPDATING USER PROFILE in the BIOS of the computer, please wait..." -ForegroundColor Green
@@ -2314,7 +2335,7 @@ do {
             Clear-Host
             Write-Host ""
             Write-Host "    +======================================================================+" -ForegroundColor Magenta
-            Write-Host "    |                    SPLASH SCREEN GALLERY v2.0                        |" -ForegroundColor Yellow
+            Write-Host "    |                    SPLASH SCREEN GALLERY Version $Script:ApplicationVersion                        |" -ForegroundColor Yellow
             Write-Host "    +======================================================================+" -ForegroundColor Magenta
             Write-Host ""
             
@@ -2368,7 +2389,7 @@ do {
                 # Set random splash screen
                 $randomNum = Get-Random -Minimum 1 -Maximum 21
                 $Script:SplashScreen = "$randomNum"
-                @($Script:UserName, $Script:SplashScreen) | Set-Content $Script:ConfigFile
+                @("username:$($Script:UserName)", "splashscreen:$($Script:SplashScreen)") | Set-Content $Script:ConfigFile
                 
                 Write-Host ""
                 Write-Host "    RANDOMIZING SPLASH SCREEN..." -ForegroundColor Yellow
@@ -2385,7 +2406,7 @@ do {
             }
             elseif ($galleryChoice -eq "0") {
                 $Script:SplashScreen = "0"
-                @($Script:UserName, $Script:SplashScreen) | Set-Content $Script:ConfigFile
+                @("username:$($Script:UserName)", "splashscreen:$($Script:SplashScreen)") | Set-Content $Script:ConfigFile
                 Write-Host ""
                 Write-Host "    SPLASH SCREEN DISABLED!" -ForegroundColor Red
                 Write-Host "    BORING MODE ACTIVATED!" -ForegroundColor DarkGray
@@ -2434,7 +2455,7 @@ do {
                 
                 if ($setChoice -eq "Y" -or $setChoice -eq "y") {
                     $Script:SplashScreen = $galleryChoice
-                    @($Script:UserName, $Script:SplashScreen) | Set-Content $Script:ConfigFile
+                    @("username:$($Script:UserName)", "splashscreen:$($Script:SplashScreen)") | Set-Content $Script:ConfigFile
                     Write-Host ""
                     Write-Host "    SPLASH SCREEN UPDATED!" -ForegroundColor Green
                     Write-Host "    $($Script:SplashScreens[$galleryChoice].Name.ToUpper()) WILL GREET YOU NEXT TIME!" -ForegroundColor Cyan
@@ -2480,12 +2501,68 @@ do {
         # Computer History
         Show-History
     }
+    elseif ($choice -eq "8") {
+        # Documentation - Retro Style (show in terminal)
+        Clear-Host
+        $docFile = "$PSScriptRoot\DOCUMENTATION.txt"
+        if (Test-Path $docFile) {
+            Write-Host ""
+            Write-Host "    +======================================================================+" -ForegroundColor Cyan
+            Write-Host "    |                    DOCUMENTATION VIEWER v1.0                         |" -ForegroundColor Yellow
+            Write-Host "    +======================================================================+" -ForegroundColor Cyan
+            Write-Host ""
+            Write-Host "    LOADING DOCUMENTATION FROM MEMORY BANK..." -ForegroundColor Green
+            Start-Sleep -Milliseconds 500
+            Write-Host "    DECODING ASCII ART..." -ForegroundColor Green
+            Start-Sleep -Milliseconds 500
+            Write-Host ""
+            Write-Host "    ======================================================================" -ForegroundColor DarkGray
+            Write-Host ""
+
+            # Read and display the documentation
+            $docContent = Get-Content $docFile
+            foreach ($line in $docContent) {
+                Write-Host $line -ForegroundColor White
+            }
+
+            Write-Host ""
+            Write-Host "    ======================================================================" -ForegroundColor DarkGray
+            Write-Host ""
+            Write-Host "    END OF DOCUMENTATION - PRESS ANY KEY TO RETURN TO MAIN MENU" -ForegroundColor Yellow
+            $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+        }
+        else {
+            Write-Host ""
+            Write-Host "    ERROR: DOCUMENTATION FILE NOT FOUND!" -ForegroundColor Red
+            Write-Host "    EXPECTED: $docFile" -ForegroundColor DarkGray
+            Write-Host "    PRESS ANY KEY TO CONTINUE..." -ForegroundColor Yellow
+            $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+        }
+    }
+    elseif ($choice -eq "9") {
+        # Documentation - Modern Style (open in browser)
+        $docFile = "$PSScriptRoot\DOCUMENTATION.html"
+        if (Test-Path $docFile) {
+            Write-Host ""
+            Write-Host "    LAUNCHING MODERN DOCUMENTATION..." -ForegroundColor Green
+            Write-Host "    OPENING DEFAULT BROWSER..." -ForegroundColor Cyan
+            Start-Process $docFile
+            Start-Sleep -Seconds 2
+        }
+        else {
+            Write-Host ""
+            Write-Host "    ERROR: DOCUMENTATION FILE NOT FOUND!" -ForegroundColor Red
+            Write-Host "    EXPECTED: $docFile" -ForegroundColor DarkGray
+            Write-Host "    PRESS ANY KEY TO CONTINUE..." -ForegroundColor Yellow
+            $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+        }
+    }
     elseif ($choice -eq "X" -or $choice -eq "x") {
         Clear-Host
         Write-Host ""
         Write-Host "    +======================================================================+" -ForegroundColor Red
         Write-Host "    |                                                                      |" -ForegroundColor Red
-        Write-Host "    |             THANK YOU FOR USING GETMOVIES V2.0                       |" -ForegroundColor Yellow
+        Write-Host "    |             THANK YOU FOR USING Get Movies $Script:ApplicationVersion                       |" -ForegroundColor Yellow
         Write-Host "    |                                                                      |" -ForegroundColor Red
         # Pad the name to ensure consistent alignment
         $userName = if ($Script:UserName) { [string]$Script:UserName } else { "User" }
