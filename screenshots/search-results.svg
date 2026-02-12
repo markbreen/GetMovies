@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="650" viewBox="0 0 900 650">
+  <style>
+    .terminal {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .bg { fill: #000000; }
+    .cyan { fill: #00FFFF; }
+    .yellow { fill: #FFFF00; }
+    .green { fill: #00FF00; }
+    .white { fill: #FFFFFF; }
+  </style>
+
+  <rect class="bg" width="900" height="650"/>
+
+  <text class="terminal green" x="20" y="40">    +======================================================================+</text>
+  <text class="terminal green" x="20" y="56">    |                      SEARCH RESULTS FOUND!                           |</text>
+  <text class="terminal green" x="20" y="72">    +======================================================================+</text>
+  <text class="terminal yellow" x="20" y="88">    | SEARCH QUERY: INCEPTION</text>
+  <text class="terminal green" x="20" y="104">    +======================================================================+</text>
+
+  <text class="terminal yellow" x="20" y="136">    [1] Inception (2010) [1080p] [BluRay] [YTS.MX]</text>
+  <text class="terminal green" x="20" y="152">        SIZE: 2.22 GiB | SEEDS: 8473 | MAGNET: AVAILABLE</text>
+
+  <text class="terminal yellow" x="20" y="184">    [2] Inception (2010) 720p BrRip x264 - YIFY</text>
+  <text class="terminal green" x="20" y="200">        SIZE: 1.10 GiB | SEEDS: 6234 | MAGNET: AVAILABLE</text>
+
+  <text class="terminal yellow" x="20" y="232">    [3] Inception (2010) [2160p] [4K] [BluRay] [5.1] [YTS]</text>
+  <text class="terminal green" x="20" y="248">        SIZE: 6.53 GiB | SEEDS: 1842 | MAGNET: AVAILABLE</text>
+
+  <text class="terminal yellow" x="20" y="280">    [4] Inception.2010.IMAX.1080p.BluRay.x265.HEVC</text>
+  <text class="terminal green" x="20" y="296">        SIZE: 3.14 GiB | SEEDS: 1234 | MAGNET: AVAILABLE</text>
+
+  <text class="terminal yellow" x="20" y="328">    [5] Inception (2010) 1080p BluRay x264-SPARKS</text>
+  <text class="terminal green" x="20" y="344">        SIZE: 8.75 GiB | SEEDS: 892 | MAGNET: AVAILABLE</text>
+
+  <text class="terminal yellow" x="20" y="376">    [6] Inception (2010) 480p BluRay x264</text>
+  <text class="terminal green" x="20" y="392">        SIZE: 450 MiB | SEEDS: 567 | MAGNET: AVAILABLE</text>
+
+  <text class="terminal yellow" x="20" y="424">    [7] Inception.2010.Directors.Cut.1080p.BluRay.x264</text>
+  <text class="terminal green" x="20" y="440">        SIZE: 12.5 GiB | SEEDS: 234 | MAGNET: AVAILABLE</text>
+
+  <text class="terminal yellow" x="20" y="472">    [8] Inception (2010) 1080p BDRip multi audio</text>
+  <text class="terminal green" x="20" y="488">        SIZE: 4.20 GiB | SEEDS: 156 | MAGNET: AVAILABLE</text>
+
+  <text class="terminal yellow" x="20" y="520">    [9] Inception (2010) 720p BluRay REMUX</text>
+  <text class="terminal green" x="20" y="536">        SIZE: 15.3 GiB | SEEDS: 89 | MAGNET: AVAILABLE</text>
+
+  <text class="terminal yellow" x="20" y="568">    [10] Inception.2010.Extended.Cut.1080p</text>
+  <text class="terminal green" x="20" y="584">        SIZE: 5.67 GiB | SEEDS: 45 | MAGNET: AVAILABLE</text>
+
+  <text class="terminal cyan" x="20" y="616">    +======================================================================+</text>
+  <text class="terminal white" x="20" y="632">    | [1-10] VIEW MAGNET | [20] SHOW 20 | [30] SHOW 30 | [B] BACK         |</text>
+</svg>

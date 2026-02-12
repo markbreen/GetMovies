@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700">
+  <style>
+    .terminal {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .bg { fill: #000000; }
+    .cyan { fill: #00FFFF; }
+    .yellow { fill: #FFFF00; }
+    .green { fill: #00FF00; }
+    .white { fill: #FFFFFF; }
+  </style>
+
+  <rect class="bg" width="900" height="700"/>
+
+  <text class="terminal cyan" x="20" y="40">    +======================================================================+</text>
+  <text class="terminal yellow" x="20" y="56">    |                    HELP &amp; KEYBOARD SHORTCUTS                         |</text>
+  <text class="terminal cyan" x="20" y="72">    +======================================================================+</text>
+
+  <text class="terminal white" x="20" y="104">    NAVIGATION:</text>
+  <text class="terminal green" x="20" y="120">      • B or b          - Go back to previous menu</text>
+  <text class="terminal green" x="20" y="136">      • X or x          - Exit application</text>
+  <text class="terminal green" x="20" y="152">      • ENTER (empty)   - Usually goes back/continues</text>
+
+  <text class="terminal white" x="20" y="184">    SEARCH OPTIONS:</text>
+  <text class="terminal green" x="20" y="200">      • Type movie name - Search for torrents</text>
+  <text class="terminal green" x="20" y="216">      • [20]            - Show 20 results</text>
+  <text class="terminal green" x="20" y="232">      • [30]            - Show 30 results</text>
+
+  <text class="terminal white" x="20" y="264">    HISTORY:</text>
+  <text class="terminal green" x="20" y="280">      • [1-10]          - Re-run a recent search</text>
+  <text class="terminal green" x="20" y="296">      • C or c          - Clear all search history</text>
+
+  <text class="terminal white" x="20" y="328">    FEATURES:</text>
+  <text class="terminal green" x="20" y="344">      • Quick Mode      - Faster animations if you've searched recently</text>
+  <text class="terminal green" x="20" y="360">      • Smart History   - Last 10 searches saved automatically</text>
+  <text class="terminal green" x="20" y="376">      • Cross-Platform  - Works on Windows, macOS, and Linux</text>
+
+  <text class="terminal white" x="20" y="408">    TIPS:</text>
+  <text class="terminal yellow" x="20" y="424">      • Be specific with search terms for better results</text>
+  <text class="terminal yellow" x="20" y="440">      • Check seeder count - higher is better</text>
+  <text class="terminal yellow" x="20" y="456">      • Use recent searches for quick re-runs</text>
+
+  <text class="terminal cyan" x="20" y="488">    +======================================================================+</text>
+
+  <text class="terminal white" x="20" y="520">    Press ENTER to return to menu...</text>
+</svg>

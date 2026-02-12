@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400">
+  <style>
+    .terminal {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .bg { fill: #000000; }
+    .cyan { fill: #00FFFF; }
+    .yellow { fill: #FFFF00; }
+    .green { fill: #00FF00; }
+  </style>
+
+  <rect class="bg" width="900" height="400"/>
+
+  <text class="terminal cyan" x="20" y="40">    +======================================================================+</text>
+  <text class="terminal yellow" x="20" y="56">    |                         MAGNET LINK                                  |</text>
+  <text class="terminal cyan" x="20" y="72">    +======================================================================+</text>
+
+  <text class="terminal yellow" x="20" y="104">    TORRENT: Inception (2010) [1080p] [BluRay] [YTS.MX]</text>
+
+  <text class="terminal green" x="20" y="136">    MAGNET LINK:</text>
+  <text class="terminal green" x="20" y="152">    magnet:?xt=urn:btih:3B1A3C35C0C174357468C...&amp;dn=Inception</text>
+  <text class="terminal green" x="20" y="168">    +2010+1080p+BluRay+YTS.MX&amp;tr=udp%3A%2F%2Ftracker.opentrackr</text>
+  <text class="terminal green" x="20" y="184">    .org%3A1337%2Fannounce&amp;tr=udp%3A%2F%2Ftracker.leechers-parad</text>
+  <text class="terminal green" x="20" y="200">    ise.org%3A6969%2Fannounce</text>
+
+  <text class="terminal cyan" x="20" y="232">    +======================================================================+</text>
+  <text class="terminal yellow" x="20" y="248">    Copy the link above and paste it into your torrent client</text>
+  <text class="terminal cyan" x="20" y="264">    +======================================================================+</text>
+
+  <text class="terminal green" x="20" y="296">    Press ENTER to continue...</text>
+</svg>

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="800" viewBox="0 0 900 800">
+  <style>
+    .terminal {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .bg { fill: #000000; }
+    .cyan { fill: #00FFFF; }
+    .yellow { fill: #FFFF00; }
+    .green { fill: #00FF00; }
+    .magenta { fill: #FF00FF; }
+    .white { fill: #FFFFFF; }
+    .gray { fill: #808080; }
+  </style>
+
+  <rect class="bg" width="900" height="800"/>
+
+  <text class="terminal magenta" x="20" y="40">    +======================================================================+</text>
+  <text class="terminal magenta" x="20" y="56">    |                                                                      |</text>
+  <text class="terminal cyan" x="20" y="72">    |   GGGGG  EEEEE TTTTT   M   M  OOO  V   V III EEEEE  SSSS             |</text>
+  <text class="terminal cyan" x="20" y="88">    |  G      E       T     MM MM O   O V   V  I  E     S                  |</text>
+  <text class="terminal yellow" x="20" y="104">    |  G  GG  EEEE    T     M M M O   O V   V  I  EEEE   SSS               |</text>
+  <text class="terminal yellow" x="20" y="120">    |  G   G  E       T     M   M O   O  V V   I  E         S              |</text>
+  <text class="terminal green" x="20" y="136">    |   GGGG  EEEEE   T     M   M  OOO    V   III EEEEE SSSS               |</text>
+  <text class="terminal magenta" x="20" y="152">    |                                                                      |</text>
+  <text class="terminal magenta" x="20" y="168">    |                    ###############################                   |</text>
+  <text class="terminal white" x="20" y="184">    |                    #  RADICAL TORRENT FINDER    #                    |</text>
+  <text class="terminal white" x="20" y="200">    |                    #      Version 3.0           #                    |</text>
+  <text class="terminal magenta" x="20" y="216">    |                    ###############################                   |</text>
+  <text class="terminal magenta" x="20" y="232">    |                                                                      |</text>
+  <text class="terminal magenta" x="20" y="248">    +======================================================================+</text>
+
+  <text class="terminal cyan" x="20" y="280">    +-WELCOME BACK, USER! READY TO RIP?-+</text>
+  <text class="terminal yellow" x="20" y="296">    | WELCOME BACK, USER! READY TO RIP? |</text>
+  <text class="terminal cyan" x="20" y="312">    +-WELCOME BACK, USER! READY TO RIP?-+</text>
+
+  <text class="terminal magenta" x="20" y="344">    ********************************************************************</text>
+  <text class="terminal magenta" x="20" y="360">    *                                                                  *</text>
+  <text class="terminal white" x="20" y="376">    *  [1] SEARCH MOVIES &amp; TV SHOWS      [3] CHANGE USER NAME            *</text>
+  <text class="terminal white" x="20" y="392">    *  [2] RECENT SEARCHES               [4] HELP &amp; SHORTCUTS          *</text>
+  <text class="terminal white" x="20" y="408">    *                                   [X] EXIT TO DOS               *</text>
+  <text class="terminal magenta" x="20" y="424">    *                                                                  *</text>
+  <text class="terminal magenta" x="20" y="440">    ********************************************************************</text>
+
+  <text class="terminal gray" x="20" y="472">    +----------------------------------------------------------------------+</text>
+  <text class="terminal gray" x="20" y="488">    | SYSTEM STATUS MONITOR v1.3                                           |</text>
+  <text class="terminal gray" x="20" y="504">    +----------------------------------------------------------------------+</text>
+  <text class="terminal green" x="20" y="520">    | CPU: Intel 80486 DX2 66MHz | TEMP: 52°C | LOAD: 28%                 |</text>
+  <text class="terminal green" x="20" y="536">    | RAM: 384/640KB | SWAP: ACTIVE | CACHE: OPTIMAL                       |</text>
+  <text class="terminal green" x="20" y="552">    | HDD: 420MB FREE | SPEED: 95 KB/s | DEFRAG: 3 DAYS AGO               |</text>
+  <text class="terminal green" x="20" y="568">    | MODEM: 56K CONNECTED | PING: 167 ms | PACKET LOSS: 0%                |</text>
+  <text class="terminal green" x="20" y="584">    | UPTIME: 42 H 17 M                                                    |</text>
+  <text class="terminal gray" x="20" y="600">    +----------------------------------------------------------------------+</text>
+
+  <text class="terminal cyan" x="20" y="632">    ENTER COMMAND &gt;&gt;&gt; _</text>
+</svg>

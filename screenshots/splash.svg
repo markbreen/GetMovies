@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700">
+  <style>
+    .terminal {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .bg { fill: #000000; }
+    .cyan { fill: #00FFFF; }
+    .yellow { fill: #FFFF00; }
+    .green { fill: #00FF00; }
+    .magenta { fill: #FF00FF; }
+    .gray { fill: #808080; }
+  </style>
+
+  <rect class="bg" width="900" height="700"/>
+
+  <text class="terminal cyan" x="20" y="40">    ============================================================================</text>
+  <text class="terminal cyan" x="20" y="56">    ||                                                                        ||</text>
+  <text class="terminal cyan" x="20" y="72">    ||  <tspan class="yellow">######  ###### ###### ##   ##  #####  ##  ## ## ###### ###### ######</tspan>  ||</text>
+  <text class="terminal cyan" x="20" y="88">    ||  <tspan class="yellow">##      ##       ##   ### ### ##   ## ##  ## ## ##     ##     ##    </tspan>  ||</text>
+  <text class="terminal cyan" x="20" y="104">    ||  <tspan class="yellow">## ###  ####     ##   ## # ## ##   ## ##  ## ## ####   ###### ######</tspan>  ||</text>
+  <text class="terminal cyan" x="20" y="120">    ||  <tspan class="yellow">##  ##  ##       ##   ##   ## ##   ##  ####  ## ##         ##     ##</tspan>  ||</text>
+  <text class="terminal cyan" x="20" y="136">    ||  <tspan class="green">######  ######   ##   ##   ##  #####    ##   ## ###### ###### ######</tspan>  ||</text>
+  <text class="terminal cyan" x="20" y="152">    ||                                                                        ||</text>
+  <text class="terminal cyan" x="20" y="168">    ============================================================================</text>
+
+  <text class="terminal magenta" x="20" y="200">                        &gt;&gt;&gt;===[ GO EDITION - VERSION 3.0 ]===&lt;&lt;&lt;</text>
+
+  <text class="terminal gray" x="20" y="232">    +------------------------------------------------------------------------+</text>
+  <text class="terminal gray" x="20" y="248">    |                                                                        |</text>
+  <text class="terminal" x="20" y="264">    |                        <tspan class="yellow">SYSTEM INITIALIZATION</tspan>                           |</text>
+  <text class="terminal gray" x="20" y="280">    |                                                                        |</text>
+  <text class="terminal green" x="20" y="296">    | [*] Loading TORRENT.SYS.................... [OK]                       |</text>
+  <text class="terminal green" x="20" y="312">    | [*] Initializing P2P Protocol.............. [OK]                       |</text>
+  <text class="terminal green" x="20" y="328">    | [*] Connecting to Underground Network...... [OK]                       |</text>
+  <text class="terminal green" x="20" y="344">    | [*] Establishing Secure Tunnel............. [OK]                       |</text>
+  <text class="terminal gray" x="20" y="360">    |                                                                        |</text>
+  <text class="terminal yellow" x="20" y="376">    |      ALL SYSTEMS OPERATIONAL - WELCOME TO THE REVOLUTION               |</text>
+  <text class="terminal gray" x="20" y="392">    |                                                                        |</text>
+  <text class="terminal gray" x="20" y="408">    +------------------------------------------------------------------------+</text>
+
+  <text class="terminal gray" x="20" y="440">           COPYRIGHT (C) 2026 PIRATE LIBERATION FRONT - NO RIGHTS RESERVED</text>
+
+  <text class="terminal gray" x="20" y="472">    Press ENTER to continue...</text>
+</svg>

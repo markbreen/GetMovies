@@ -107,6 +107,32 @@ This tool brings that aesthetic back while delivering modern functionality.
 
 ### Splash Screen
 
+![Splash Screen](screenshots/splash.svg)
+
+### Main Menu
+
+![Main Menu](screenshots/main-menu.svg)
+
+### Search Results
+
+![Search Results](screenshots/search-results.svg)
+
+### Magnet Link Display
+
+![Magnet Link](screenshots/magnet-link.svg)
+
+### Help & Shortcuts
+
+![Help Screen](screenshots/help.svg)
+
+---
+
+### Text Version (for reference)
+
+<details>
+<summary>Click to expand text versions</summary>
+
+**Splash Screen:**
 ```
     ============================================================================
     ||                                                                        ||
@@ -138,117 +164,22 @@ This tool brings that aesthetic back while delivering modern functionality.
     Press ENTER to continue...
 ```
 
-### Main Menu
-
+**Main Menu:**
 ```
-    +======================================================================+
-    |                                                                      |
-    |   GGGGG  EEEEE TTTTT   M   M  OOO  V   V III EEEEE  SSSS             |
-    |  G      E       T     MM MM O   O V   V  I  E     S                  |
-    |  G  GG  EEEE    T     M M M O   O V   V  I  EEEE   SSS               |
-    |  G   G  E       T     M   M O   O  V V   I  E         S              |
-    |   GGGG  EEEEE   T     M   M  OOO    V   III EEEEE SSSS               |
-    |                                                                      |
-    |                    ###############################                   |
-    |                    #  RADICAL TORRENT FINDER    #                    |
-    |                    #      Version 3.0           #                    |
-    |                    ###############################                   |
-    |                                                                      |
-    +======================================================================+
-
-    +-WELCOME BACK, USER! READY TO RIP?-+
-    | WELCOME BACK, USER! READY TO RIP? |
-    +-WELCOME BACK, USER! READY TO RIP?-+
-
-    ********************************************************************
-    *                                                                  *
-    *  [1] SEARCH MOVIES & TV SHOWS      [3] CHANGE USER NAME          *
-    *  [2] RECENT SEARCHES               [4] HELP & SHORTCUTS          *
-    *                                   [X] EXIT TO DOS                *
-    *                                                                  *
-    ********************************************************************
-
-    +----------------------------------------------------------------------+
-    | SYSTEM STATUS MONITOR v1.3                                           |
-    +----------------------------------------------------------------------+
-    | CPU: Intel 80486 DX2 66MHz | TEMP: 52°C | LOAD: 28%                 |
-    | RAM: 384/640KB | SWAP: ACTIVE | CACHE: OPTIMAL                       |
-    | HDD: 420MB FREE | SPEED: 95 KB/s | DEFRAG: 3 DAYS AGO               |
-    | MODEM: 56K CONNECTED | PING: 167 ms | PACKET LOSS: 0%                |
-    | UPTIME: 42 H 17 M                                                    |
-    +----------------------------------------------------------------------+
-
-    ENTER COMMAND >>>
+    (See above image)
 ```
 
-### Search Results
-
+**Search Results:**
 ```
-    +======================================================================+
-    |                      SEARCH RESULTS FOUND!                           |
-    +======================================================================+
-    | SEARCH QUERY: INCEPTION
-
-    [1] Inception (2010) [1080p] [BluRay] [YTS.MX]
-        SIZE: 2.22 GiB | SEEDS: 8473 | MAGNET: AVAILABLE
-
-    [2] Inception (2010) 720p BrRip x264 - YIFY
-        SIZE: 1.10 GiB | SEEDS: 6234 | MAGNET: AVAILABLE
-
-    [3] Inception (2010) [2160p] [4K] [BluRay] [5.1] [YTS]
-        SIZE: 6.53 GiB | SEEDS: 1842 | MAGNET: AVAILABLE
-
-    +======================================================================+
-    | [1-10] VIEW MAGNET | [20] SHOW 20 | [30] SHOW 30 | [B] BACK         |
-    +======================================================================+
-
-    SELECT OPTION >>>
+    (See above image)
 ```
 
-### Magnet Link Display
-
+**Magnet Link:**
 ```
-    +======================================================================+
-    |                         MAGNET LINK                                  |
-    +======================================================================+
-
-    TORRENT: Inception (2010) [1080p] [BluRay] [YTS.MX]
-
-    MAGNET LINK:
-    magnet:?xt=urn:btih:ABCD1234...&dn=Inception+2010+1080p...
-
-    +======================================================================+
-    Copy the link above and paste it into your torrent client
-    +======================================================================+
-
-    Press ENTER to continue...
+    (See above image)
 ```
 
-### Search History
-
-```
-    +======================================================================+
-    |                    RECENT SEARCH HISTORY Version 3.0                 |
-    +======================================================================+
-
-    LOADING SEARCH CACHE...
-    MEMORY BANK: ACCESSED
-
-    [1] inception
-        TIMESTAMP: 5 minutes ago
-    [2] the matrix
-        TIMESTAMP: 2 hours ago
-    [3] blade runner 2049
-        TIMESTAMP: yesterday
-    [4] interstellar
-        TIMESTAMP: 01/10 14:23
-
-    +----------------------------------------------------------------------+
-    | [1-4] RE-SEARCH | [C] CLEAR HISTORY | [B] BACK TO MENU             |
-    +----------------------------------------------------------------------+
-
-    SELECT OPTION >>>
-```
+</details>
 
 ---
 
