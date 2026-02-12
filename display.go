@@ -113,8 +113,9 @@ func ShowMenu(state *AppState) {
 
 	fmt.Println(magenta("    ********************************************************************"))
 	fmt.Println(magenta("    *                                                                  *"))
-	fmt.Println(white("    *  [1] SEARCH MOVIES & TV SHOWS      [5] CHANGE USER NAME            *"))
-	fmt.Println(white("    *  [2] RECENT SEARCHES               [X] EXIT TO DOS               *"))
+	fmt.Println(white("    *  [1] SEARCH MOVIES & TV SHOWS      [3] CHANGE USER NAME            *"))
+	fmt.Println(white("    *  [2] RECENT SEARCHES               [4] HELP & SHORTCUTS          *"))
+	fmt.Println(white("    *                                   [X] EXIT TO DOS               *"))
 	fmt.Println(magenta("    *                                                                  *"))
 	fmt.Println(magenta("    ********************************************************************"))
 	fmt.Println()
@@ -161,9 +162,35 @@ func ShowResults(torrents []Torrent, searchTerm string) {
 			name = name[:57] + "..."
 		}
 		fmt.Printf(yellow("    [%d] %s\n"), i+1, name)
-		fmt.Printf(green("        SIZE: %s | SEEDS: %s | STATUS: ACTIVE\n"), t.Size, t.Seeders)
+		magnetStatus := "AVAILABLE"
+		if t.MagnetLink == "" {
+			magnetStatus = "N/A"
+		}
+		fmt.Printf(green("        SIZE: %s | SEEDS: %s | MAGNET: %s\n"), t.Size, t.Seeders, magnetStatus)
 		fmt.Println()
 	}
+}
+
+// ShowMagnetLink displays a magnet link
+func ShowMagnetLink(torrent Torrent) {
+	cyan := color.New(color.FgCyan).SprintFunc()
+	yellow := color.New(color.FgYellow).SprintFunc()
+	green := color.New(color.FgGreen).SprintFunc()
+
+	fmt.Println()
+	fmt.Println(cyan("    +======================================================================+"))
+	fmt.Println(yellow("    |                         MAGNET LINK                                  |"))
+	fmt.Println(cyan("    +======================================================================+"))
+	fmt.Println()
+	fmt.Printf(yellow("    TORRENT: %s\n"), torrent.Name)
+	fmt.Println()
+	fmt.Println(green("    MAGNET LINK:"))
+	fmt.Printf(green("    %s\n"), torrent.MagnetLink)
+	fmt.Println()
+	fmt.Println(cyan("    +======================================================================+"))
+	fmt.Println(yellow("    Copy the link above and paste it into your torrent client"))
+	fmt.Println(cyan("    +======================================================================+"))
+	fmt.Println()
 }
 
 // ShowError displays an error message

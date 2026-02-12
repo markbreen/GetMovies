@@ -66,8 +66,10 @@ func main() {
 			handleSearch(state, reader)
 		case "2":
 			handleRecentSearches(state, reader)
-		case "5":
+		case "3":
 			handleChangeUsername(state, reader)
+		case "4":
+			handleHelp(reader)
 		case "X", "x":
 			handleExit(state)
 			return
@@ -127,7 +129,7 @@ func handleSearch(state *AppState, reader *bufio.Reader) {
 
 	// Result options
 	fmt.Println(cyan("    +======================================================================+"))
-	fmt.Printf(color.WhiteString("    | [20] SHOW 20 | [30] SHOW 30 | [B] BACK TO MENU   |\n"))
+	fmt.Printf(color.WhiteString("    | [1-%d] VIEW MAGNET | [20] SHOW 20 | [30] SHOW 30 | [B] BACK     |\n"), len(torrents))
 	fmt.Println(cyan("    +======================================================================+"))
 	fmt.Println()
 	fmt.Printf("    %s ", yellow("SELECT OPTION >>>"))
@@ -158,6 +160,21 @@ func handleSearch(state *AppState, reader *bufio.Reader) {
 		reader.ReadString('\n')
 	case "B", "b", "":
 		return
+	default:
+		// Try to parse as number for magnet link
+		idx, err := strconv.Atoi(selection)
+		if err == nil && idx >= 1 && idx <= len(torrents) {
+			selectedTorrent := torrents[idx-1]
+			if selectedTorrent.MagnetLink != "" {
+				ClearScreen()
+				ShowMagnetLink(selectedTorrent)
+				fmt.Println("    Press ENTER to continue...")
+				reader.ReadString('\n')
+			} else {
+				ShowError("No magnet link available for this torrent")
+				time.Sleep(2 * time.Second)
+			}
+		}
 	}
 }
 
@@ -193,8 +210,21 @@ func handleRecentSearches(state *AppState, reader *bufio.Reader) {
 	fmt.Println()
 
 	for i, search := range searches {
-		fmt.Printf(yellow("    [%d] %s\n"), i+1, search)
-		fmt.Printf(gray("        TIMESTAMP: %s\n"), time.Now().Format("01/02 15:04"))
+		fmt.Printf(yellow("    [%d] %s\n"), i+1, search.Query)
+
+		// Format timestamp nicely
+		elapsed := time.Since(search.Timestamp)
+		var timeStr string
+		if elapsed.Minutes() < 60 {
+			timeStr = fmt.Sprintf("%.0f minutes ago", elapsed.Minutes())
+		} else if elapsed.Hours() < 24 {
+			timeStr = fmt.Sprintf("%.0f hours ago", elapsed.Hours())
+		} else if elapsed.Hours() < 48 {
+			timeStr = "yesterday"
+		} else {
+			timeStr = search.Timestamp.Format("01/02 15:04")
+		}
+		fmt.Printf(gray("        TIMESTAMP: %s\n"), timeStr)
 	}
 
 	fmt.Println()
@@ -208,14 +238,27 @@ func handleRecentSearches(state *AppState, reader *bufio.Reader) {
 	choice = strings.TrimSpace(choice)
 
 	if choice == "C" || choice == "c" {
-		err := ClearHistory(state.RecentFile)
-		if err != nil {
-			ShowError("Failed to clear history")
+		// Add confirmation
+		fmt.Println()
+		fmt.Printf("    %s ", red("CLEAR ALL SEARCH HISTORY? (Y/N) >>>"))
+		confirm, _ := reader.ReadString('\n')
+		confirm = strings.TrimSpace(strings.ToUpper(confirm))
+
+		if confirm == "Y" || confirm == "YES" {
+			err := ClearHistory(state.RecentFile)
+			if err != nil {
+				ShowError("Failed to clear history")
+			} else {
+				fmt.Println()
+				fmt.Println(red("    SEARCH HISTORY CLEARED!"))
+				fmt.Println(red("    MEMORY BANK: WIPED"))
+			}
+			time.Sleep(2 * time.Second)
 		} else {
-			fmt.Println(red("    SEARCH HISTORY CLEARED!"))
-			fmt.Println(red("    MEMORY BANK: WIPED"))
+			fmt.Println()
+			fmt.Println(green("    OPERATION CANCELLED"))
+			time.Sleep(1 * time.Second)
 		}
-		time.Sleep(2 * time.Second)
 		return
 	}
 
@@ -226,7 +269,7 @@ func handleRecentSearches(state *AppState, reader *bufio.Reader) {
 	// Try to parse as number
 	idx, err := strconv.Atoi(choice)
 	if err == nil && idx >= 1 && idx <= len(searches) {
-		searchTerm := searches[idx-1]
+		searchTerm := searches[idx-1].Query
 		fmt.Printf(green("    RE-SEARCHING FOR: %s\n"), searchTerm)
 		time.Sleep(1 * time.Second)
 
@@ -290,6 +333,56 @@ func handleChangeUsername(state *AppState, reader *bufio.Reader) {
 		fmt.Println(yellow("    IDENTITY RECONFIGURED!"))
 	}
 	time.Sleep(2 * time.Second)
+}
+
+// handleHelp shows help and keyboard shortcuts
+func handleHelp(reader *bufio.Reader) {
+	ClearScreen()
+
+	cyan := color.New(color.FgCyan).SprintFunc()
+	yellow := color.New(color.FgYellow).SprintFunc()
+	green := color.New(color.FgGreen).SprintFunc()
+	white := color.New(color.FgWhite).SprintFunc()
+
+	fmt.Println()
+	fmt.Println(cyan("    +======================================================================+"))
+	fmt.Println(yellow("    |                    HELP & KEYBOARD SHORTCUTS                         |"))
+	fmt.Println(cyan("    +======================================================================+"))
+	fmt.Println()
+
+	fmt.Println(white("    NAVIGATION:"))
+	fmt.Println(green("      • B or b          - Go back to previous menu"))
+	fmt.Println(green("      • X or x          - Exit application"))
+	fmt.Println(green("      • ENTER (empty)   - Usually goes back/continues"))
+	fmt.Println()
+
+	fmt.Println(white("    SEARCH OPTIONS:"))
+	fmt.Println(green("      • Type movie name - Search for torrents"))
+	fmt.Println(green("      • [20]            - Show 20 results"))
+	fmt.Println(green("      • [30]            - Show 30 results"))
+	fmt.Println()
+
+	fmt.Println(white("    HISTORY:"))
+	fmt.Println(green("      • [1-10]          - Re-run a recent search"))
+	fmt.Println(green("      • C or c          - Clear all search history"))
+	fmt.Println()
+
+	fmt.Println(white("    FEATURES:"))
+	fmt.Println(green("      • Quick Mode      - Faster animations if you've searched recently"))
+	fmt.Println(green("      • Smart History   - Last 10 searches saved automatically"))
+	fmt.Println(green("      • Cross-Platform  - Works on Windows, macOS, and Linux"))
+	fmt.Println()
+
+	fmt.Println(white("    TIPS:"))
+	fmt.Println(yellow("      • Be specific with search terms for better results"))
+	fmt.Println(yellow("      • Check seeder count - higher is better"))
+	fmt.Println(yellow("      • Use recent searches for quick re-runs"))
+	fmt.Println()
+
+	fmt.Println(cyan("    +======================================================================+"))
+	fmt.Println()
+	fmt.Println(white("    Press ENTER to return to menu..."))
+	reader.ReadString('\n')
 }
 
 // handleExit shows exit message and quits

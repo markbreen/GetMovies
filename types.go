@@ -4,9 +4,16 @@ import "time"
 
 // Torrent represents a torrent search result
 type Torrent struct {
-	Name    string
-	Size    string
-	Seeders string
+	Name       string
+	Size       string
+	Seeders    string
+	MagnetLink string
+}
+
+// SearchHistoryEntry represents a search with timestamp
+type SearchHistoryEntry struct {
+	Timestamp time.Time
+	Query     string
 }
 
 // Config holds user configuration

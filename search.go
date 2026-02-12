@@ -35,30 +35,36 @@ func SearchTorrents(searchTerm string, resultCount int, skipAnimation bool, useQ
 
 	if !skipAnimation {
 		// Loading animation
-		stepDelay := 500 * time.Millisecond
-		bufferDelay := 50 * time.Millisecond
+		var stepDelay time.Duration
+		var loadingSteps []string
 
 		if useQuickMode {
-			stepDelay = 50 * time.Millisecond
-			bufferDelay = 5 * time.Millisecond
+			// Quick mode: minimal animation
+			stepDelay = 10 * time.Millisecond
 			fmt.Println(green("    INITIALIZING SEARCH MATRIX [QUICK MODE]..."))
+			loadingSteps = []string{
+				"CONNECTING TO PIRATE DATABASE...",
+				"SCANNING FOR SEEDERS...",
+				"OPTIMIZING DOWNLOAD QUEUE...",
+			}
 		} else {
+			// Normal mode: full animation
+			stepDelay = 500 * time.Millisecond
 			fmt.Println(yellow("    INITIALIZING SEARCH MATRIX..."))
-		}
-
-		loadingSteps := []string{
-			"CONNECTING TO PIRATE DATABASE...",
-			"BYPASSING SECURITY PROTOCOLS...",
-			"ACCESSING TORRENT MAINFRAME...",
-			"DECRYPTING MAGNET LINKS...",
-			"SCANNING FOR SEEDERS...",
-			"INITIALIZING P2P CONNECTIONS...",
-			"VERIFYING TRACKER RESPONSES...",
-			"ALLOCATING BANDWIDTH RESOURCES...",
-			"ESTABLISHING PEER HANDSHAKES...",
-			"DOWNLOADING TORRENT METADATA...",
-			"CHECKING FILE INTEGRITY...",
-			"OPTIMIZING DOWNLOAD QUEUE...",
+			loadingSteps = []string{
+				"CONNECTING TO PIRATE DATABASE...",
+				"BYPASSING SECURITY PROTOCOLS...",
+				"ACCESSING TORRENT MAINFRAME...",
+				"DECRYPTING MAGNET LINKS...",
+				"SCANNING FOR SEEDERS...",
+				"INITIALIZING P2P CONNECTIONS...",
+				"VERIFYING TRACKER RESPONSES...",
+				"ALLOCATING BANDWIDTH RESOURCES...",
+				"ESTABLISHING PEER HANDSHAKES...",
+				"DOWNLOADING TORRENT METADATA...",
+				"CHECKING FILE INTEGRITY...",
+				"OPTIMIZING DOWNLOAD QUEUE...",
+			}
 		}
 
 		totalSteps := len(loadingSteps)
@@ -78,12 +84,18 @@ func SearchTorrents(searchTerm string, resultCount int, skipAnimation bool, useQ
 		}
 
 		fmt.Println()
-		fmt.Print(green("[Yea-Buffering"))
-		for i := 0; i < 36; i++ {
-			fmt.Print(green("="))
-			time.Sleep(bufferDelay)
+		if useQuickMode {
+			// Quick mode: instant completion
+			fmt.Println(green("[Yea-Buffering====================================] 100% COMPLETE"))
+		} else {
+			// Normal mode: animated buffer
+			fmt.Print(green("[Yea-Buffering"))
+			for i := 0; i < 36; i++ {
+				fmt.Print(green("="))
+				time.Sleep(50 * time.Millisecond)
+			}
+			fmt.Println(green("] 100% COMPLETE"))
 		}
-		fmt.Println(green("] 100% COMPLETE"))
 	} else {
 		fmt.Println(yellow("    REFRESHING RESULTS..."))
 		time.Sleep(500 * time.Millisecond)
@@ -125,11 +137,20 @@ func SearchTorrents(searchTerm string, resultCount int, skipAnimation bool, useQ
 			size := strings.TrimSpace(cells.Eq(4).Text())
 			seeders := strings.TrimSpace(cells.Eq(5).Text())
 
+			// Extract magnet link
+			magnetLink := ""
+			cells.Eq(1).Find("a[href^='magnet:']").Each(func(_ int, link *goquery.Selection) {
+				if href, exists := link.Attr("href"); exists {
+					magnetLink = href
+				}
+			})
+
 			if name != "" {
 				torrents = append(torrents, Torrent{
-					Name:    name,
-					Size:    size,
-					Seeders: seeders,
+					Name:       name,
+					Size:       size,
+					Seeders:    seeders,
+					MagnetLink: magnetLink,
 				})
 			}
 		}

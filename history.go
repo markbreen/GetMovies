@@ -2,26 +2,51 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"strings"
 	"time"
 )
 
 // LoadRecentSearches loads search history from text file
-func LoadRecentSearches(recentFile string) ([]string, error) {
+func LoadRecentSearches(recentFile string) ([]SearchHistoryEntry, error) {
 	file, err := os.Open(recentFile)
 	if err != nil {
 		// File doesn't exist yet
-		return []string{}, nil
+		return []SearchHistoryEntry{}, nil
 	}
 	defer file.Close()
 
-	var searches []string
+	var searches []SearchHistoryEntry
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := strings.TrimSpace(scanner.Text())
-		if line != "" {
-			searches = append(searches, line)
+		if line == "" {
+			continue
+		}
+
+		// Parse format: timestamp|query
+		parts := strings.SplitN(line, "|", 2)
+		if len(parts) == 2 {
+			timestamp, err := time.Parse(time.RFC3339, parts[0])
+			if err != nil {
+				// Old format without timestamp, use current time
+				searches = append(searches, SearchHistoryEntry{
+					Timestamp: time.Now(),
+					Query:     line,
+				})
+			} else {
+				searches = append(searches, SearchHistoryEntry{
+					Timestamp: timestamp,
+					Query:     parts[1],
+				})
+			}
+		} else {
+			// Old format without timestamp
+			searches = append(searches, SearchHistoryEntry{
+				Timestamp: time.Now(),
+				Query:     line,
+			})
 		}
 	}
 
@@ -33,19 +58,23 @@ func SaveRecentSearch(recentFile string, searchTerm string) error {
 	// Load existing searches
 	searches, err := LoadRecentSearches(recentFile)
 	if err != nil {
-		searches = []string{}
+		searches = []SearchHistoryEntry{}
 	}
 
 	// Remove duplicates of this search
-	var filtered []string
+	var filtered []SearchHistoryEntry
 	for _, s := range searches {
-		if s != searchTerm {
+		if s.Query != searchTerm {
 			filtered = append(filtered, s)
 		}
 	}
 
-	// Add new search at the beginning
-	newSearches := append([]string{searchTerm}, filtered...)
+	// Add new search at the beginning with current timestamp
+	newEntry := SearchHistoryEntry{
+		Timestamp: time.Now(),
+		Query:     searchTerm,
+	}
+	newSearches := append([]SearchHistoryEntry{newEntry}, filtered...)
 
 	// Keep only last 10
 	if len(newSearches) > 10 {
@@ -60,7 +89,7 @@ func SaveRecentSearch(recentFile string, searchTerm string) error {
 	defer file.Close()
 
 	for _, s := range newSearches {
-		file.WriteString(s + "\n")
+		file.WriteString(fmt.Sprintf("%s|%s\n", s.Timestamp.Format(time.RFC3339), s.Query))
 	}
 
 	return nil
