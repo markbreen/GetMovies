@@ -1,3 +1,11 @@
 # User-specific files
 recent_searches.txt
 getmovies_config.txt
+
+# .NET build output
+bin/
+obj/
+
+# VoiceType user config (contains API key)
+# Use config.json in the repo as a template, but keep your key out of source control.
+# The template is committed with an empty api key for reference.

@@ -1,0 +1,9 @@
+{
+  "openai_api_key": "",
+  "hotkey": "Ctrl+Alt",
+  "whisper_model": "whisper-1",
+  "cleanup_model": "gpt-4o",
+  "cleanup_prompt": "You are a text cleanup assistant. The user has dictated text via voice. Clean it up with minimal changes: fix grammar, punctuation, and remove filler words (um, uh, like, you know). Preserve the original meaning, tone, and intent. Do not rewrite or restructure. Return only the cleaned text with no explanation.",
+  "audio_format": "wav",
+  "skip_cleanup": false
+}
